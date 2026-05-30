@@ -1,29 +1,31 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const registerUser = async () => {
     try {
-      const res = await axios.post("https://full-stack-blog-app-tgss.onrender.com", {
+      const res = await axios.post("https://full-stack-blog-app-tgss.onrender.com/register", {
         username,
         email,
         password
       });
 
       alert(res.data.message);
-    } 
-catch (err) {
-  console.log("ERROR:", err);
-  console.log("MESSAGE:", err.message);
-  console.log("RESPONSE:", err.response);
-  console.log("REQUEST:", err.request);
-}
 
+      // Signup success ayyaka login page ki vellali
+      navigate("/login");
 
+    } catch (err) {
+      console.log(err);
+      alert("Signup Failed ❌");
+    }
   };
 
   return (
