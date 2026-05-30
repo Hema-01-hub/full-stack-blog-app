@@ -19,7 +19,7 @@ function Signup() {
 
       alert(res.data.message);
 
-      // Signup success ayyaka login page ki vellali
+      // go to login page after signup
       navigate("/login");
 
     } catch (err) {
